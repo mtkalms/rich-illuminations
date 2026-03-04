@@ -1,0 +1,54 @@
+[project]
+name = "rich-illuminations"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Matthias Kalms", email = "mtkalms@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+]
+requires-python = ">=3.14"
+dependencies = [
+    "graphical",
+    "rich>=14.3.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/mtkalms/rich-illuminations"
+Repository = "https://github.com/mtkalms/rich-illuminations"
+Documentation = "https://mtkalms.github.io/rich-illuminations"
+"Bug Tracker" = "https://github.com/mtkalms/rich-illuminations/issues"
+"Changelog" = "https://github.com/mtkalms/rich-illuminations/blob/main/CHANGELOG.md"
+
+[project.scripts]
+rich-illuminations = "rich_illuminations:main"
+
+[tool.uv.sources]
+graphical = { path = "../graphical" }
+
+[dependency-groups]
+dev = [
+    "mkdocs-material>=9.7.4",
+    "mkdocstrings>=1.0.3",
+    "mkdocstrings-python>=2.0.3",
+    "pytest>=9.0.2",
+    "pytest-clarity>=1.0.1",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.15.4",
+]
