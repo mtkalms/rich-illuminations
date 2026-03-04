@@ -22,7 +22,10 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v5
+            - name: Checkout repository
+              uses: actions/checkout@v5
+              with:
+                submodules: recursive
             - name: Install uv and set Python version 3.14
               uses: astral-sh/setup-uv@v7
               with:
