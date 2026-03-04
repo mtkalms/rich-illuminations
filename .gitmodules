@@ -1,3 +1,4 @@
 [submodule "graphical"]
 	path = graphical
 	url = git@github.com:mtkalms/graphical.git
+    branch = restructure-api
