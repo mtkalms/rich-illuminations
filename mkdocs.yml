@@ -1,0 +1,97 @@
+site_name: rich-illuminations
+site_url: https://mtkalms.github.io/rich-illuminations
+
+repo_name: rich-illuminations
+repo_url: https://github.com/mtkalms/rich-illuminations
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.tabs.sticky
+    - navigation.footer
+    - navigation.path
+    - search.suggest
+    - search.highlight
+    - content.code.annotate
+    - content.code.copy
+  font:
+    code: Cascadia Code
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/theme-light-dark
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/white-balance-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+
+watch:
+  - src/rich_illuminations
+  - mkdocs.yml
+  - docs
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_options:
+              ignore_init_summary: true
+            merge_init_into_class: true
+            modernize_annotations: false
+            parameter_headings: true
+            separate_signature: true
+            show_root_heading: false
+            show_signature_annotations: false
+            show_source: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            signature_crossrefs: true
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: rich
+          class: rich
+          format: !!python/name:rich_illuminations._doc.rich
+        - name: glyphs
+          class: glyphs
+          format: !!python/name:rich_illuminations._doc.glyphs
+  - pymdownx.snippets
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+
+extra_css:
+  - stylesheets/extra.css
