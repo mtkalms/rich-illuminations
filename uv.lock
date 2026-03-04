@@ -134,7 +134,7 @@ wheels = [
 [[package]]
 name = "graphical"
 version = "0.1.0"
-source = { directory = "../graphical" }
+source = { directory = "graphical" }
 dependencies = [
     { name = "rich" },
 ]
@@ -581,7 +581,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "graphical", directory = "../graphical" },
+    { name = "graphical", directory = "graphical" },
     { name = "rich", specifier = ">=14.3.3" },
 ]
 
