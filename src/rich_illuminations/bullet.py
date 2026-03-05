@@ -18,8 +18,8 @@ class Bullet:
         target: Numeric,
         width: int,
         limits: Sequence[Numeric],
-        limit_colors: Sequence[Color | str],
-        color: Color | str = "black",
+        limit_colors: Sequence[Union[Color, str]],
+        color: Union[Color, str] = "black",
     ):
         self.value = value
         self.target = target

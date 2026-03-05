@@ -18,10 +18,10 @@ class Horizon:
         self,
         values: Sequence[Numeric],
         value_range: Tuple[Numeric, Numeric],
-        colors: Sequence[Optional[Color | str]],
+        colors: Sequence[Optional[Union[Color, str]]],
         width: Optional[int] = None,
         marks: Mark = BAR_BLOCK_V,
-        bgcolor: Optional[Color | str] = None,
+        bgcolor: Optional[Union[Color, str]] = None,
         summary_function: SummaryFunction = max,
     ):
         self.values = values

@@ -18,9 +18,9 @@ class WinLoss:
         values: Sequence[Numeric],
         width: Optional[int] = None,
         marks: Mark = BAR_BLOCK_V,
-        color: Optional[Color | str] = None,
-        negcolor: Optional[Color | str] = None,
-        bgcolor: Optional[Color | str] = None,
+        color: Optional[Union[Color, str]] = None,
+        negcolor: Optional[Union[Color, str]] = None,
+        bgcolor: Optional[Union[Color, str]] = None,
         summary_function: SummaryFunction = sum,
     ):
         self.values = values
