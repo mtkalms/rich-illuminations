@@ -1,6 +1,6 @@
 import pytest
 
-from graphical.sparkline import Sparkline
+from rich_illuminations.sparkline import Sparkline
 from graphical.mark import BAR_BLOCK_V, BAR_SHADE, Mark
 
 from .util import render
