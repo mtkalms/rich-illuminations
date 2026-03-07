@@ -6,11 +6,8 @@ from rich.measure import Measurement
 from rich.segment import Segment
 from rich.style import Style
 
-from graphical._buckets import buckets, SummaryFunction
-from graphical._normalize import normalize
+from graphical.utils import buckets, SummaryFunction, normalize, Numeric
 from graphical.mark import Mark, BAR_BLOCK_V
-
-Numeric = Union[int, float]
 
 
 class Sparkline:
