@@ -3,7 +3,7 @@ import pytest
 from rich_illuminations.sparkline import Sparkline
 from graphical.mark import BAR_BLOCK_V, BAR_SHADE, Mark
 
-from .util import render
+from tests.utilities.asserts import assert_markup
 
 
 class Test_Sparkline:
@@ -21,7 +21,7 @@ class Test_Sparkline:
             value_range=(0, width - 1),
             marks=cells,
         )
-        assert render(chart) == expected
+        assert_markup(chart, expected)
 
     @pytest.mark.parametrize(
         "cells, width, expected",
@@ -37,4 +37,4 @@ class Test_Sparkline:
             value_range=(0, width - 1),
             marks=cells,
         )
-        assert render(chart) == expected
+        assert_markup(chart, expected)
