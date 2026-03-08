@@ -14,20 +14,21 @@ class Sparkline:
     def __init__(
         self,
         values: Sequence[Numeric],
-        value_range: Tuple[Numeric, Numeric],
+        *,
+        value_range: Optional[Tuple[Numeric, Numeric]] = None,
         width: Optional[int] = None,
-        marks: Mark = BAR_BLOCK_V,
+        marks: Optional[Mark] = None,
         color: Optional[Union[Color, str]] = None,
         bgcolor: Optional[Union[Color, str]] = None,
-        summary_function: SummaryFunction = max,
+        summary_function: Optional[SummaryFunction] = None,
     ):
         self.values = values
-        self.value_range = value_range
+        self.value_range = value_range or (min(self.values), max(self.values))
         self.width = width or len(values)
-        self.marks = marks
+        self.marks = marks or BAR_BLOCK_V
         self.color = color
         self.bgcolor = bgcolor
-        self.summary_function = summary_function
+        self.summary_function = summary_function or max
 
     def __rich_console__(
         self, console: Console, options: ConsoleOptions

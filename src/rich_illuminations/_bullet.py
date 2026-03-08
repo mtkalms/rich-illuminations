@@ -1,4 +1,4 @@
-from typing import Sequence, Union
+from typing import Optional, Sequence, Union
 from rich.color import Color
 from rich.console import ConsoleOptions, Console, RenderResult
 from rich.segment import Segment
@@ -18,15 +18,16 @@ class Bullet:
         target: Numeric,
         width: int,
         limits: Sequence[Numeric],
-        limit_colors: Sequence[Union[Color, str]],
-        color: Union[Color, str] = "black",
+        *,
+        color: Optional[Union[Color, str]] = None,
+        limit_colors: Optional[Sequence[Union[Color, str]]] = None,
     ):
         self.value = value
         self.target = target
         self.limits = limits
         self.width = width
-        self.color = color
-        self.limit_colors = limit_colors
+        self.color = color or "black"
+        self.limit_colors = limit_colors or ["red", "orange1", "green"]
 
     def _in_cell_space(self, value: Numeric):
         step = (self.limits[-1] - self.limits[0]) / self.width
