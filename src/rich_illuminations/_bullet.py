@@ -1,3 +1,4 @@
+import io
 from typing import Sequence, Union
 from rich.color import Color
 from rich.console import ConsoleOptions, Console, RenderResult
@@ -41,6 +42,7 @@ class Bullet:
         target = self._in_cell_space(self.target)
         value = self._in_cell_space(self.value)
         color = self.color
+        segments = []
         for cell in range(self.width):
             if cell < target <= (cell + 1):
                 marks = marks_target
@@ -60,7 +62,10 @@ class Bullet:
                 if int(limit) >= (cell + 1):
                     bgcolor = self.limit_colors[(idx - 1) % len(self.limit_colors)]
                     break
-            yield Segment(marks.get(cell_value), Style(color=color, bgcolor=bgcolor))
+            segments.append(
+                Segment(marks.get(cell_value), Style(color=color, bgcolor=bgcolor))
+            )
+        yield from Segment.simplify(segments)
 
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
