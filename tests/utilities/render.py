@@ -15,4 +15,4 @@ def render_ansi(
     console.print(
         renderable, no_wrap=no_wrap, justify=justify, overflow=overflow, end=""
     )
-    return console.export_text()
+    return console.export_text(styles=True)
