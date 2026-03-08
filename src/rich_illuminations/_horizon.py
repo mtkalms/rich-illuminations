@@ -1,4 +1,5 @@
 from typing import Optional, Sequence, Tuple, Union
+import math
 
 from rich.color import Color
 from rich.console import ConsoleOptions, RenderResult, Console
@@ -55,8 +56,6 @@ class Horizon:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    import math
-
     console = Console()
     console.print(
         Horizon(
