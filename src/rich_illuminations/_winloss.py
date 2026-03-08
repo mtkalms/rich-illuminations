@@ -15,7 +15,7 @@ class WinLoss:
         self,
         values: Sequence[Numeric],
         width: Optional[int] = None,
-        marks: Mark = BAR_BLOCK_V,
+        marks: Optional[Mark] = None,
         color: Optional[Union[Color, str]] = None,
         negcolor: Optional[Union[Color, str]] = None,
         bgcolor: Optional[Union[Color, str]] = None,
@@ -23,7 +23,7 @@ class WinLoss:
     ):
         self.values = values
         self.width = width or len(values)
-        self.marks = marks
+        self.marks = marks or BAR_BLOCK_V
         self.color = color
         self.negcolor = negcolor
         self.bgcolor = bgcolor
