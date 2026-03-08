@@ -51,7 +51,7 @@ class Horizon:
         return Measurement(self.width, 1)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     import math
 
     console = Console()

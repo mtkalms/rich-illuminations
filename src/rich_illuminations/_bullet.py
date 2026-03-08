@@ -73,7 +73,7 @@ class Bullet:
         return Measurement(self.width, 1)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     console = Console()
     for v in [210, 250, 260, 280, 300]:
         console.print(
