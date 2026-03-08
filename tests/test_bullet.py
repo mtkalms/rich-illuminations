@@ -1,6 +1,6 @@
 import pytest
 
-from rich_illuminations._bullet import Bullet
+from rich_illuminations import Bullet
 from tests.utilities.asserts import assert_markup
 
 
@@ -22,4 +22,4 @@ def test_values(value: float, expected: str):
         limits=[0, 100, 200, 300],
         limit_colors=["red", "orange1", "green"],
     )
-    assert_markup(chart, expected, preview=True)
+    assert_markup(chart, expected)

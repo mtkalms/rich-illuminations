@@ -3,7 +3,7 @@ import pytest
 from graphical.mark import BAR_BLOCK_V, BAR_HEAVY_V, BAR_LIGHT_V, Mark
 from rich.console import Console
 from rich.measure import Measurement
-from rich_illuminations._winloss import WinLoss
+from rich_illuminations import WinLoss
 from tests.utilities.asserts import assert_markup
 
 
