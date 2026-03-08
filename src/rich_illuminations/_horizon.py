@@ -35,6 +35,7 @@ class Horizon:
         levels = len(self.colors)
         colors = zip(self.colors, [self.bgcolor, *self.colors[:-1]])
         styles = [Style(color=color, bgcolor=bgcolor) for color, bgcolor in colors]
+        segments = []
         for cell_value in buckets(self.values, self.width, self.summary_function):
             normalized = normalize(cell_value, self.value_range) * levels
             value, level = math.modf(normalized)
@@ -43,7 +44,8 @@ class Horizon:
                 value = 1.0
             cell_char = self.marks.get(value)
             cell_style = styles[int(level)]
-            yield Segment(cell_char, style=cell_style)
+            segments.append(Segment(cell_char, style=cell_style))
+        yield from Segment.simplify(segments)
 
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions

@@ -33,10 +33,12 @@ class Sparkline:
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
         style = Style(color=self.color, bgcolor=self.bgcolor)
+        segments = []
         for cell_value in buckets(self.values, self.width, self.summary_function):
             normalized = normalize(cell_value, self.value_range)
             cell_char = self.marks.get(normalized)
-            yield Segment(cell_char, style=style)
+            segments.append(Segment(cell_char, style=style))
+        yield from Segment.simplify(segments)
 
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions

@@ -34,13 +34,15 @@ class WinLoss:
     ) -> RenderResult:
         pos_style = Style(color=self.color, bgcolor=self.bgcolor)
         neg_style = Style(color=self.negcolor, bgcolor=self.bgcolor)
+        segments = []
         for value in buckets(self.values, self.width, self.summary_function):
             if value > 0:
-                yield Segment(self.marks.get(-0.5), style=pos_style)
+                segments.append(Segment(self.marks.get(-0.5), style=pos_style))
             elif value < 0:
-                yield Segment(self.marks.get(0.5), style=neg_style)
+                segments.append(Segment(self.marks.get(0.5), style=neg_style))
             else:
-                yield Segment(" ", style=pos_style)
+                segments.append(Segment(" ", style=pos_style))
+        yield from Segment.simplify(segments)
 
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
