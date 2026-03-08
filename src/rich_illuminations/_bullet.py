@@ -1,4 +1,3 @@
-import io
 from typing import Sequence, Union
 from rich.color import Color
 from rich.console import ConsoleOptions, Console, RenderResult
