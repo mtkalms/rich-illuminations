@@ -32,7 +32,7 @@ class WinLoss:
         bgcolor: Optional[Union[Color, str]] = None,
         summary_function: Optional[SummaryFunction] = None,
     ):
-        self.values = data
+        self.data = data
         self.width = width or len(data)
         self.marks = marks or BAR_BLOCK_V
         self.colors = colors or (None, None)
@@ -45,7 +45,7 @@ class WinLoss:
         pos_style = Style(color=self.colors[1], bgcolor=self.bgcolor)
         neg_style = Style(color=self.colors[0], bgcolor=self.bgcolor)
         segments = []
-        for value in buckets(self.values, self.width, self.summary_function):
+        for value in buckets(self.data, self.width, self.summary_function):
             if value > 0:
                 segments.append(Segment(self.marks.get(-0.5), style=pos_style))
             elif value < 0:
