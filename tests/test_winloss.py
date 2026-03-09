@@ -19,7 +19,7 @@ from tests.utilities.asserts import assert_markup
 )
 def test_ascending(cells: Mark, width: int, expected: str):
     chart = WinLoss(
-        values=[-(width // 2) + d for d in range(width)],
+        data=[-(width // 2) + d for d in range(width)],
         marks=cells,
     )
     assert_markup(chart, expected, preview=True)
@@ -37,7 +37,7 @@ def test_ascending(cells: Mark, width: int, expected: str):
 )
 def test_descending(cells: Mark, width: int, expected: str):
     chart = WinLoss(
-        values=[width // 2 - d for d in range(width)],
+        data=[width // 2 - d for d in range(width)],
         marks=cells,
     )
     assert_markup(chart, expected)
@@ -45,7 +45,7 @@ def test_descending(cells: Mark, width: int, expected: str):
 
 def test_measurement():
     chart = WinLoss(
-        values=[0, 1, 2],
+        data=[0, 1, 2],
         width=6,
     )
     console = Console()
