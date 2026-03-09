@@ -137,7 +137,7 @@ def test_measurement():
         marks=BAR_BLOCK_V,
     )
     console = Console()
-    assert chart.__rich_measure__(console, console.options) == Measurement(6, 1)
+    assert chart.__rich_measure__(console, console.options) == Measurement(6, 6)
 
 
 def test_empty_values():

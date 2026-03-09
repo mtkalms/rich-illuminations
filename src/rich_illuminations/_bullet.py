@@ -70,7 +70,7 @@ class Bullet:
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, 1)
+        return Measurement(self.width, self.width)
 
 
 if __name__ == "__main__":  # pragma: no cover

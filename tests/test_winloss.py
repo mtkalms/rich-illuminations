@@ -49,4 +49,4 @@ def test_measurement():
         width=6,
     )
     console = Console()
-    assert chart.__rich_measure__(console, console.options) == Measurement(6, 1)
+    assert chart.__rich_measure__(console, console.options) == Measurement(6, 6)
