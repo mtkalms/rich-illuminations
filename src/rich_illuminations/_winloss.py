@@ -16,8 +16,8 @@ class WinLoss:
     Args:
         data: Sequence of data to render.
         width: The width of the chart. Defaults to length of data.
-        marks: Marks used for the winloss bars. Defaults to None.
-        colors: Pair of colors used for negative and positive values.
+        marks: Marks used for the winloss bars. Defaults to BAR_BLOCK_V.
+        colors: Pair of colors used for negative and positive values. Defaults to "default" for both.
         bgcolor: Background color. Defaults to "default".
         summary_function: Function to summarize the values in a cell. Defaults to sum.
     """

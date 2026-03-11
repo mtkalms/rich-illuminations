@@ -17,9 +17,9 @@ class Horizon:
     Args:
         data: Sequence of data to render.
         value_range: Lower and upper boundary. Defaults to the range of data.
-        colors: Colors used for the horizon layers. Defaults to None.
+        colors: Colors used for the horizon layers. Defaults to shades of green.
         width: The width of the graph. Defaults to length of data.
-        marks: Marks used for the horizon bars. Defaults to None.
+        marks: Marks used for the horizon bars. Defaults to BAR_BLOCK_V.
         bgcolor: Background color. Defaults to "default".
         summary_function: Function to summarize the values in a cell. Defaults to max.
     """
