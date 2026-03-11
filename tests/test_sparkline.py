@@ -22,7 +22,7 @@ from statistics import mean
 )
 def test_ascending(cells: Mark, width: int, expected: str):
     chart = Sparkline(
-        values=[-1 + d for d in range(width + 2)],
+        data=[-1 + d for d in range(width + 2)],
         value_range=(0, width - 1),
         marks=cells,
     )
@@ -39,7 +39,7 @@ def test_ascending(cells: Mark, width: int, expected: str):
 )
 def test_descending(cells: Mark, width: int, expected: str):
     chart = Sparkline(
-        values=[width + 1 - d for d in range(width + 2)],
+        data=[width + 1 - d for d in range(width + 2)],
         value_range=(0, width - 1),
         marks=cells,
     )
@@ -58,7 +58,7 @@ def test_descending(cells: Mark, width: int, expected: str):
 )
 def test_bounds(value: float, value_range: Tuple[float, float], expected: str):
     chart = Sparkline(
-        values=[value],
+        data=[value],
         value_range=value_range,
         marks=BAR_BLOCK_V,
     )
@@ -81,7 +81,7 @@ def test_buckets(
     expected: str,
 ):
     chart = Sparkline(
-        values=values,
+        data=values,
         value_range=value_range,
         width=width,
         marks=BAR_BLOCK_V,
@@ -100,7 +100,7 @@ def test_buckets(
 )
 def test_custom_summary_function(summary_function: SummaryFunction, expected: str):
     chart = Sparkline(
-        values=[0, 8, 1, 7],
+        data=[0, 8, 1, 7],
         value_range=(0, 8),
         width=2,
         marks=BAR_BLOCK_V,
@@ -111,7 +111,7 @@ def test_custom_summary_function(summary_function: SummaryFunction, expected: st
 
 def test_value_mapping():
     chart = Sparkline(
-        values=[2.75],
+        data=[2.75],
         value_range=(0, 8),
         marks=BAR_BLOCK_V,
     )
@@ -120,7 +120,7 @@ def test_value_mapping():
 
 def test_styling():
     chart = Sparkline(
-        values=[8],
+        data=[8],
         value_range=(0, 8),
         marks=BAR_BLOCK_V,
         color="red",
@@ -131,7 +131,7 @@ def test_styling():
 
 def test_measurement():
     chart = Sparkline(
-        values=[0, 1, 2],
+        data=[0, 1, 2],
         value_range=(0, 2),
         width=6,
         marks=BAR_BLOCK_V,
@@ -142,7 +142,7 @@ def test_measurement():
 
 def test_empty_values():
     chart = Sparkline(
-        values=[],
+        data=[],
         value_range=(0, 1),
         width=3,
         marks=BAR_BLOCK_V,

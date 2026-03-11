@@ -11,9 +11,21 @@ from graphical.mark import Mark, BAR_BLOCK_V
 
 
 class Sparkline:
+    """Sparkline.
+
+    Args:
+        data: Sequence of data to render.
+        value_range: Lower and upper boundary. Defaults to the range of data.
+        width: The width of the graph. Defaults to length of data.
+        marks: Marks used for the horizon bars. Defaults to BAR_BLOCK_V.
+        color: Color for the sparkline bars. Defaults to "default".
+        bgcolor: Background color. Defaults to "default".
+        summary_function: Function to summarize the values in a cell. Defaults to max.
+    """
+
     def __init__(
         self,
-        values: Sequence[Numeric],
+        data: Sequence[Numeric],
         *,
         value_range: Optional[Tuple[Numeric, Numeric]] = None,
         width: Optional[int] = None,
@@ -22,9 +34,9 @@ class Sparkline:
         bgcolor: Optional[Union[Color, str]] = None,
         summary_function: Optional[SummaryFunction] = None,
     ):
-        self.values = values
-        self.value_range = value_range or (min(self.values), max(self.values))
-        self.width = width or len(values)
+        self.data = data
+        self.value_range = value_range or (min(self.data), max(self.data))
+        self.width = width or len(data)
         self.marks = marks or BAR_BLOCK_V
         self.color = color
         self.bgcolor = bgcolor
@@ -35,7 +47,7 @@ class Sparkline:
     ) -> RenderResult:
         style = Style(color=self.color, bgcolor=self.bgcolor)
         segments = []
-        for cell_value in buckets(self.values, self.width, self.summary_function):
+        for cell_value in buckets(self.data, self.width, self.summary_function):
             normalized = normalize(cell_value, self.value_range)
             cell_char = self.marks.get(normalized)
             segments.append(Segment(cell_char, style=style))
