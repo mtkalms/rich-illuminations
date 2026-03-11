@@ -11,7 +11,7 @@ from graphical.mark import Mark, BAR_BLOCK_V
 
 
 class WinLoss:
-    """Special sparkline showing values as either wins (positive) or losses (negative).
+    """Win/loss graph.
 
     Args:
         data: Sequence of data to render.
