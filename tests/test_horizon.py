@@ -8,7 +8,7 @@ from tests.utilities.asserts import assert_markup
 
 
 @pytest.mark.parametrize(
-    "values, expected",
+    "data, expected",
     [
         (
             [-5 + d for d in range(11)],
@@ -21,8 +21,8 @@ from tests.utilities.asserts import assert_markup
     ],
     ids=["ascending", "descending"],
 )
-def test_values(values: Sequence[Numeric], expected: str):
+def test_data(data: Sequence[Numeric], expected: str):
     chart = Horizon(
-        values=values, value_range=(-5, 5), colors=["#4d9221", "#7fbc41", "#b8e186"]
+        data=data, value_range=(-5, 5), colors=["#4d9221", "#7fbc41", "#b8e186"]
     )
     assert_markup(chart, expected, preview=True)
