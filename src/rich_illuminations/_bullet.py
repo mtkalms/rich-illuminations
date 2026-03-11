@@ -12,9 +12,20 @@ Numeric = Union[int, float]
 
 
 class Bullet:
+    """Bullet graph.
+
+    Args:
+        data (Numeric): The value.
+        target (Numeric): The target value.
+        width (int): The width of the graph.
+        limits (Sequence[Numeric]): Boundaries of the qualitative ranges.
+        color (Optional[Union[Color, str]], optional): Color of bar and mark. Defaults to "black".
+        limit_colors (Optional[Sequence[Union[Color, str]]], optional): Colors used for the quality ranges. Defaults to ["red", "orange1", "green"].
+    """
+
     def __init__(
         self,
-        value: Numeric,
+        data: Numeric,
         target: Numeric,
         width: int,
         limits: Sequence[Numeric],
@@ -22,7 +33,7 @@ class Bullet:
         color: Optional[Union[Color, str]] = None,
         limit_colors: Optional[Sequence[Union[Color, str]]] = None,
     ):
-        self.value = value
+        self.data = data
         self.target = target
         self.limits = limits
         self.width = width
@@ -40,7 +51,7 @@ class Bullet:
         marks_target = Mark("│┥┿", "│┝┿")
         limits = [self._in_cell_space(d) for d in self.limits]
         target = self._in_cell_space(self.target)
-        value = self._in_cell_space(self.value)
+        value = self._in_cell_space(self.data)
         color = self.color
         segments = []
         for cell in range(self.width):
@@ -78,7 +89,7 @@ if __name__ == "__main__":  # pragma: no cover
     for v in [210, 250, 260, 280, 300]:
         console.print(
             Bullet(
-                value=v,
+                data=v,
                 target=250,
                 width=15,
                 limits=[0, 100, 200, 300],

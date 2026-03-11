@@ -5,7 +5,7 @@ from tests.utilities.asserts import assert_markup
 
 
 @pytest.mark.parametrize(
-    "value, expected",
+    "data, expected",
     [
         (210, "[black][on red]━━━━━[on orange1]━━━━━[on green]╸ │  [/]"),
         (250, "[black][on red]━━━━━[on orange1]━━━━━[on green]━━┥  [/]"),
@@ -14,9 +14,9 @@ from tests.utilities.asserts import assert_markup
     ],
     ids=["below target", "on target", "over target", "on limit"],
 )
-def test_values(value: float, expected: str):
+def test_data(data: float, expected: str):
     chart = Bullet(
-        value=value,
+        data=data,
         target=250,
         width=15,
         limits=[0, 100, 200, 300],
