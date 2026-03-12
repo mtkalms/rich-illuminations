@@ -22,7 +22,7 @@ def test_ascending(cells: Mark, width: int, expected: str):
         data=[-(width // 2) + d for d in range(width)],
         marks=cells,
     )
-    assert_markup(chart, expected, preview=True)
+    assert_markup(chart, expected)
 
 
 @pytest.mark.parametrize(

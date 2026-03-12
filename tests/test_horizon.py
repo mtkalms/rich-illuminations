@@ -25,4 +25,4 @@ def test_data(data: Sequence[Numeric], expected: str):
     chart = Horizon(
         data=data, value_range=(-5, 5), colors=["#4d9221", "#7fbc41", "#b8e186"]
     )
-    assert_markup(chart, expected, preview=True)
+    assert_markup(chart, expected)
