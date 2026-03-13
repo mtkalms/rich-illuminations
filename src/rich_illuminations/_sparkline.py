@@ -45,9 +45,10 @@ class Sparkline:
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         style = Style(color=self.color, bgcolor=self.bgcolor)
         segments = []
-        for cell_value in buckets(self.data, self.width, self.summary_function):
+        for cell_value in buckets(self.data, width, self.summary_function):
             normalized = normalize(cell_value, self.value_range)
             cell_char = self.marks.get(normalized)
             segments.append(Segment(cell_char, style=style))
@@ -56,4 +57,4 @@ class Sparkline:
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)

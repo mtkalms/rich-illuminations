@@ -11,6 +11,7 @@ from rich.style import Style
 Numeric = Union[int, float]
 BarMark = Literal["block", "heavy", "light"]
 
+
 class Bar:
     """Bar graph.
 
@@ -33,7 +34,7 @@ class Bar:
         marks: Optional[Union[BarMark, Mark]] = None,
         color: Optional[Union[Color, str]] = None,
         bgcolor: Optional[Union[Color, str]] = None,
-        show_label: bool = False
+        show_label: bool = False,
     ):
         self.data = data
         self.value_range = value_range
@@ -52,14 +53,14 @@ class Bar:
             return BAR_LIGHT_H
         return mark
 
-
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         tag_width = max(len(f"{d}") for d in self.value_range)
-        bar_width = self.width
+        bar_width = width
         if self.show_label:
-            bar_width -= (tag_width + 1)
+            bar_width -= tag_width + 1
         yield from BaseBar(
             value=self.data,
             value_range=self.value_range,
@@ -67,15 +68,18 @@ class Bar:
             marks=self.marks,
             color=self.color,
             bgcolor=self.bgcolor,
-            orientation="horizontal"
+            orientation="horizontal",
         )
         if self.show_label:
-            yield Segment(f" {self.data:>{tag_width}}", Style(color=self.color, bgcolor=self.bgcolor))
-       
+            yield Segment(
+                f" {self.data:>{tag_width}}",
+                Style(color=self.color, bgcolor=self.bgcolor),
+            )
+
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)
 
 
 if __name__ == "__main__":  # pragma: no cover
@@ -83,11 +87,7 @@ if __name__ == "__main__":  # pragma: no cover
     for v in [-10, 150, 260, -280, 300]:
         console.print(
             Bar(
-                data=v,
-                width=150,
-                value_range=(-150,300),
-                color="red",
-                show_label=True
+                data=v, width=150, value_range=(-150, 300), color="red", show_label=True
             )
         )
         console.print()

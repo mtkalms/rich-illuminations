@@ -42,10 +42,11 @@ class WinLoss:
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         pos_style = Style(color=self.colors[1], bgcolor=self.bgcolor)
         neg_style = Style(color=self.colors[0], bgcolor=self.bgcolor)
         segments = []
-        for value in buckets(self.data, self.width, self.summary_function):
+        for value in buckets(self.data, width, self.summary_function):
             if value > 0:
                 segments.append(Segment(self.marks.get(-0.5), style=pos_style))
             elif value < 0:
@@ -57,4 +58,4 @@ class WinLoss:
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)

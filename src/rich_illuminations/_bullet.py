@@ -47,6 +47,7 @@ class Bullet:
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         marks_bar = BAR_HEAVY_H
         marks_target = Mark("│┥┿", "│┝┿")
         limits = [self._in_cell_space(d) for d in self.limits]
@@ -54,7 +55,7 @@ class Bullet:
         value = self._in_cell_space(self.data)
         color = self.color
         segments = []
-        for cell in range(self.width):
+        for cell in range(width):
             if cell < target <= (cell + 1):
                 marks = marks_target
             else:
@@ -81,7 +82,7 @@ class Bullet:
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)
 
 
 if __name__ == "__main__":  # pragma: no cover

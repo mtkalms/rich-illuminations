@@ -9,6 +9,7 @@ from graphical.bar import StackedBar as StackedBar
 Numeric = Union[int, float]
 BarMark = Literal["block", "heavy", "light"]
 
+
 class Stack:
     """Stacked bar graph.
 
@@ -17,7 +18,7 @@ class Stack:
         value_range: Lower and upper boundary. Defaults to range of data.
         width (int): The width of the graph. Defaults to 100.
         marks (Union[BarMark, Mark]], optional): Marks used for the bars. Defaults to "block".
-        colors (Sequence[Union[Color, str]], optional): Colors of the bars. 
+        colors (Sequence[Union[Color, str]], optional): Colors of the bars.
         bgcolor (Union[Color, str], optional): Background color. Defaults to "default".
     """
 
@@ -47,35 +48,29 @@ class Stack:
             return BAR_LIGHT_H
         return mark
 
-
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         yield from StackedBar(
             values=self.data,
             value_range=self.value_range,
-            width=self.width,
+            width=width,
             marks=self.marks,
             colors=self.colors,
             bgcolor=self.bgcolor,
-            orientation="horizontal"
+            orientation="horizontal",
         )
-       
+
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)
 
 
 if __name__ == "__main__":  # pragma: no cover
     console = Console()
     for v in [[10, 2, 3, 4, 12], [5, 7, 4, 3, 2]]:
-        console.print(
-            Stack(
-                data=v,
-                width=150,
-                value_range=(0, 50)
-            )
-        )
+        console.print(Stack(data=v, width=150, value_range=(0, 50)))
         console.print(f" {v}")
         console.print()

@@ -46,11 +46,12 @@ class Horizon:
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
+        width = min(self.width, options.max_width)
         levels = len(self.colors)
         colors = zip(self.colors, [self.bgcolor, *self.colors[:-1]])
         styles = [Style(color=color, bgcolor=bgcolor) for color, bgcolor in colors]
         segments = []
-        for cell_value in buckets(self.data, self.width, self.summary_function):
+        for cell_value in buckets(self.data, width, self.summary_function):
             normalized = normalize(cell_value, self.value_range) * levels
             value, level = math.modf(normalized)
             if normalized > 0 and value == 0.0:
@@ -64,7 +65,7 @@ class Horizon:
     def __rich_measure__(
         self, console: Console, options: ConsoleOptions
     ) -> Measurement:
-        return Measurement(self.width, self.width)
+        return Measurement(5, self.width)
 
 
 if __name__ == "__main__":  # pragma: no cover
