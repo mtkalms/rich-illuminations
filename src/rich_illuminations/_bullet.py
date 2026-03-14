@@ -40,8 +40,8 @@ class Bullet:
         self.color = color or "black"
         self.limit_colors = limit_colors or ["red", "orange1", "green"]
 
-    def _in_cell_space(self, value: Numeric):
-        step = (self.limits[-1] - self.limits[0]) / self.width
+    def _in_cell_space(self, value: Numeric, width: Numeric):
+        step = (self.limits[-1] - self.limits[0]) / width
         return (value - self.limits[0]) / step
 
     def __rich_console__(
@@ -50,9 +50,9 @@ class Bullet:
         width = min(self.width, options.max_width)
         marks_bar = BAR_HEAVY_H
         marks_target = Mark("│┥┿", "│┝┿")
-        limits = [self._in_cell_space(d) for d in self.limits]
-        target = self._in_cell_space(self.target)
-        value = self._in_cell_space(self.data)
+        limits = [self._in_cell_space(d, width) for d in self.limits]
+        target = self._in_cell_space(self.target, width)
+        value = self._in_cell_space(self.data, width)
         color = self.color
         segments = []
         for cell in range(width):
